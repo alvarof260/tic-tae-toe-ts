@@ -1,8 +1,7 @@
 /* Types */
-import { type Theme } from "./types";
 
 /* Primary */
-import { useState, useEffect } from "react";
+import { useTheme } from "./hooks/useTheme";
 import "@fontsource-variable/inter";
 
 /* Components */
@@ -11,25 +10,7 @@ import Layout from "./layouts/Layout";
 
 function App() {
   const board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"];
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (window.matchMedia("(prefers-color-scheme:dark)").matches) {
-      return "dark";
-    } else {
-      return "light";
-    }
-  });
-
-  useEffect(() => {
-    if (theme == "dark") {
-      document.querySelector("body")?.classList.add("dark");
-    } else {
-      document.querySelector("body")?.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const handleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  const { handleTheme, theme } = useTheme();
   return (
     <Layout>
       <Header handleTheme={handleTheme} theme={theme} />
