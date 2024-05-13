@@ -4,7 +4,7 @@ import { type Board } from "./types";
 /* Primary */
 import { useTheme } from "./hooks/useTheme";
 import { useState } from "react";
-import { TURNS } from "./constants";
+import { TURNS, COMBINATIONS_WINNER } from "./constants";
 import "@fontsource-variable/inter";
 
 /* Components */
@@ -14,16 +14,42 @@ import Layout from "./layouts/Layout";
 function App() {
   const [board, setBoard] = useState<Board>(Array(9).fill(null));
   const [turn, setTurn] = useState<string>(TURNS.X);
+  const [winner, setWinner] = useState<string | false | null>(null);
   const { handleTheme, theme } = useTheme();
 
+  const getWinner = (boardToCheck: Board) => {
+    for (const comb of COMBINATIONS_WINNER) {
+      const [a, b, c] = comb;
+      if (
+        boardToCheck[a] &&
+        boardToCheck[a] === boardToCheck[b] &&
+        boardToCheck[a] === boardToCheck[c]
+      ) {
+        return { winner: boardToCheck[a], comb };
+      }
+    }
+    return null;
+  };
+
+  const isFullBoard = (boardToCheck: Board) => {
+    return boardToCheck.every((cell) => cell != null);
+  };
+
   const updateBoard = (index: number): void => {
-    if (board[index]) return;
+    if (board[index] || winner) return;
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
 
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
+
+    const newWinner = getWinner(newBoard);
+    if (newWinner) {
+      setWinner(newWinner.winner);
+    } else if (isFullBoard(newBoard)) {
+      setWinner(false);
+    }
   };
 
   return (
@@ -41,6 +67,8 @@ function App() {
             </button>
           ))}
         </article>
+        <article className="flex justify-center font-inter text-2xl pt-8 dark:text-azure-radiance-50 text-azure-radiance-950">{`It's ${turn} turn`}</article>
+        {winner ? <span>Gano {winner} </span> : <span>empate</span>}
       </main>
     </Layout>
   );
