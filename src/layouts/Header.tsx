@@ -15,7 +15,7 @@ const Header = ({
 }) => {
   return (
     <header className="flex justify-evenly items-center w-full h-16">
-      <h1 className="font-inter font-bold text-4xl py-4 text-slate-950 dark:text-azure-radiance-50">
+      <h1 className="font-inter font-bold text-4xl py-4 text-azure-radiance-950 dark:text-azure-radiance-50">
         TIC TAE TOE
       </h1>
       <button
@@ -25,9 +25,9 @@ const Header = ({
         hover:bg-azure-radiance-400/20 transition-all duration-300 ease-in"
       >
         {theme == "dark" ? (
-          <Sun styles="text-slate-200" />
+          <Sun styles="text-azure-radiance-50" />
         ) : (
-          <Moon styles="text-slate-950" />
+          <Moon styles="text-azure-radiance-950" />
         )}
       </button>
     </header>
