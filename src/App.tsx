@@ -13,6 +13,7 @@ import Header from "./layouts/Header";
 import Layout from "./layouts/Layout";
 import BoardComponent from "./components/Board";
 import TurnSelect from "./components/TurnSelect";
+import ModalResult from "./components/ModalResult";
 
 function App() {
   const [board, setBoard] = useState<Board>(Array(9).fill(null));
@@ -55,9 +56,7 @@ function App() {
         </button>
         <BoardComponent board={board} updateBoard={updateBoard} />
         <TurnSelect turn={turn} winner={winner} />
-        {/* <button onClick={() => resetGame()}>RESET</button>
-        <article className="flex justify-center font-inter text-2xl pt-8 dark:text-azure-radiance-50 text-azure-radiance-950">{`It's ${turn} turn`}</article>
-        {winner ? <span>Gano {winner} </span> : <span>empate</span>} */}
+        <ModalResult winner={winner} resetGame={resetGame} />
       </main>
     </Layout>
   );
