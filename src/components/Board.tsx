@@ -11,7 +11,12 @@ const Board = ({
   return (
     <article className="grid grid-cols-3 place-content-around gap-8 w-[450px] h-[450px] px-6">
       {board.map((mark, index) => (
-        <Cell updateBoard={updateBoard} index={index} value={mark} />
+        <Cell
+          key={index}
+          updateBoard={updateBoard}
+          index={index}
+          value={mark}
+        />
       ))}
     </article>
   );

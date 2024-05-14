@@ -12,6 +12,7 @@ import "@fontsource-variable/inter";
 import Header from "./layouts/Header";
 import Layout from "./layouts/Layout";
 import BoardComponent from "./components/Board";
+import TurnSelect from "./components/TurnSelect";
 
 function App() {
   const [board, setBoard] = useState<Board>(Array(9).fill(null));
@@ -36,13 +37,27 @@ function App() {
     }
   };
 
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X);
+    setWinner(null);
+  };
+
   return (
     <Layout>
       <Header handleTheme={handleTheme} theme={theme} />
-      <main className="grid place-content-center h-[90vh]">
+      <main className="flex flex-col justify-center items-center gap-4 h-[90vh]">
+        <button
+          className=" bg-azure-radiance-700 h-10 px-3 rounded-md text-md text-azure-radiance-100 font-inter font-regular"
+          onClick={resetGame}
+        >
+          Reset Game
+        </button>
         <BoardComponent board={board} updateBoard={updateBoard} />
+        <TurnSelect turn={turn} winner={winner} />
+        {/* <button onClick={() => resetGame()}>RESET</button>
         <article className="flex justify-center font-inter text-2xl pt-8 dark:text-azure-radiance-50 text-azure-radiance-950">{`It's ${turn} turn`}</article>
-        {winner ? <span>Gano {winner} </span> : <span>empate</span>}
+        {winner ? <span>Gano {winner} </span> : <span>empate</span>} */}
       </main>
     </Layout>
   );
