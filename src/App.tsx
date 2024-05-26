@@ -6,6 +6,7 @@ import { useTheme } from "./hooks/useTheme";
 import { useState } from "react";
 import { TURNS } from "./constants";
 import { getWinner, isFullBoard } from "./utils/board";
+import { BUTTONSTYLES } from "./styles";
 import "@fontsource-variable/inter";
 
 /* Components */
@@ -14,6 +15,7 @@ import Layout from "./layouts/Layout";
 import BoardComponent from "./components/Board";
 import TurnSelect from "./components/TurnSelect";
 import ModalResult from "./components/ModalResult";
+import Button from "./components/Button";
 
 function App() {
   const [board, setBoard] = useState<Board>(Array(9).fill(null));
@@ -48,12 +50,9 @@ function App() {
     <Layout>
       <Header handleTheme={handleTheme} theme={theme} />
       <main className="flex flex-col justify-center items-center gap-4 h-[90vh]">
-        <button
-          className=" bg-azure-radiance-700 h-10 px-3 rounded-md text-md text-azure-radiance-100 font-inter font-regular"
-          onClick={resetGame}
-        >
-          Reset Game
-        </button>
+        <Button type={BUTTONSTYLES.primary} resetGame={resetGame}>
+          Restart Game
+        </Button>
         <BoardComponent board={board} updateBoard={updateBoard} />
         <TurnSelect turn={turn} winner={winner} />
         <ModalResult winner={winner} resetGame={resetGame} />
