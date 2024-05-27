@@ -1,3 +1,7 @@
+import { BUTTONSTYLES } from "../styles";
+
+import Button from "./Button";
+
 const ModalResult = ({
   winner,
   resetGame,
@@ -6,22 +10,20 @@ const ModalResult = ({
   resetGame: () => void;
 }) => {
   if (winner === null) return;
-  const message = winner ? `Gano ${winner}` : "Empato";
+  const message = winner ? `Winner ${winner}` : "End in a tie";
   return (
     <section className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-      <div className=" bg-azure-radiance-400 p-6 rounded shadow-lg z-10 h-34 w-52 flex flex-col justify-center items-center gap-4">
-        <h2 className="text-inter text-azure-radiance-950 text-xl text-center">
+      <div
+        className=" bg-blue-700 p-6 rounded shadow-lg z-10 h-80 w-96 flex flex-col 
+         justify-around items-center"
+      >
+        <h2 className="font-inter text-slate-100 text-3xl text-bold text-center">
           {message}
         </h2>
         <footer>
-          <button
-            onClick={() => {
-              resetGame();
-            }}
-            className=" bg-azure-radiance-800 w-44 h-10 text-azure-radiance-100 font-medium rounded-md text-xl"
-          >
-            play again
-          </button>
+          <Button type={BUTTONSTYLES.primary} resetGame={() => resetGame()}>
+            Play Again
+          </Button>
         </footer>
       </div>
     </section>
