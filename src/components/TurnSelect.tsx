@@ -9,31 +9,35 @@ const TurnSelect = ({
   winner: string | false | null;
 }) => {
   return (
-    <section className=" bg-azure-radiance-700 w-60 h-28 flex rounded-md shadow-md">
-      <span
+    <section className="w-60 h-28 flex">
+      <article
         className={clsx(
-          "w-1/2 h-full grid place-content-center text-4xl transition-all duration-300 ease-in border border-transparent",
+          `w-1/2 h-full grid place-content-center text-8xl font-inter 
+          dark:text-slate-100 text-slate-100 
+          transition-all duration-300 ease-in border border-transparent`,
           {
-            "bg-azure-radiance-900/50 border rounded-md border-slate-200/20":
-              turn === TURNS.X && !winner,
-            "bg-yellow-400 rounded-md": winner === TURNS.X,
+            "bg-blue-900/50 border rounded-md": turn === TURNS.X && !winner,
+            "bg-yellow-400 font-inter dark:text-slate-950 rounded-md":
+              winner === TURNS.X,
           }
         )}
       >
         {TURNS.X}
-      </span>
-      <span
+      </article>
+      <article
         className={clsx(
-          "w-1/2 h-full grid place-content-center text-4xl transition-all duration-300 ease-in border border-transparent",
+          `w-1/2 h-full grid place-content-center font-inter text-8xl
+          text-slate-100 
+          transition-all duration-300 ease-in border border-transparent`,
           {
-            "bg-azure-radiance-900/50 border rounded-md border-slate-200/20":
-              turn === TURNS.O && !winner,
-            "bg-yellow-400 rounded-md": winner === TURNS.O,
+            "bg-blue-900/50 border rounded-md": turn === TURNS.O && !winner,
+            "bg-yellow-400 font-inter text-slate-950 rounded-md":
+              winner === TURNS.O,
           }
         )}
       >
         {TURNS.O}
-      </span>
+      </article>
     </section>
   );
 };

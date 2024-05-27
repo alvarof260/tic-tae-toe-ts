@@ -9,7 +9,9 @@ const Cell = ({
 }) => {
   return (
     <button
-      className=" dark:bg-azure-radiance-600 h-28 dark:text-zinc-950 font-inter font-bold text-6xl rounded-md border-2 bg-azure-radiance-700 text-slate-50 border-slate-200/55 shadow-sm"
+      className="dark:bg-blue-700 h-28 dark:text-slate-200 
+      font-inter font-bold text-7xl text-slate-50
+      rounded-md border border-blue-300 bg-azure-radiance-700"
       key={index}
       onClick={() => updateBoard(index)}
     >

@@ -49,7 +49,7 @@ function App() {
   return (
     <Layout>
       <Header handleTheme={handleTheme} theme={theme} />
-      <main className="flex flex-col justify-center items-center gap-4 h-[90vh]">
+      <main className="flex flex-col justify-center items-center gap-8 h-[90vh]">
         <Button type={BUTTONSTYLES.primary} resetGame={resetGame}>
           Restart Game
         </Button>
